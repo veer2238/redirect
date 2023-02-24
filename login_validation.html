@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<style>
+
+   
+      
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 700px;
+        
+        background-color: rgb(95, 158, 160);
+        flex-direction: column;
+        
+
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px
+    }
+
+    p {
+        color: red;
+        /* position: fixed; */
+    }
+
+</style>
+
+<body>
+    <div class="main">
+
+
+        <h1>Login Form</h1>
+        <form name="vform" onsubmit="return validateForm()" action="Home.html">
+
+            <table >
+                <tr>
+                    <td>
+                        Email:
+                    </td>
+
+                    <td>
+                        <input type="text" name="email" id="emailp">
+                    </td>
+
+                    <td style="position: absolute;">
+                        <p id="emaili"></p>
+                    </td> 
+                </tr>
+
+                <tr>
+                    <td><br></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Password:
+                    </td>
+
+                    <td>
+                        <input type="password" name="password" id="passwordm">
+                    </td>
+
+                    <td style="position: absolute;">
+                        <p id="passwordi"></p>
+                    </td>
+                </tr>
+                <tr><td><br></td></tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox" onclick="myFunction()">Show Password
+                    </td>
+                </tr>
+
+                <tr><td><br></td></tr>
+
+                <tr>
+
+                    <td>
+                        <button onclick="window.location.href = 'Registration_validation.html';">Register here</button>
+                    </td>
+                    <td>
+                        <input type="submit" value="submit">
+
+                    </td>
+                </tr>
+
+              
+            </table>
+
+            
+
+           
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript">
+    function validateForm() {
+        var user = document.getElementById('emailp').value;
+        var pass = document.getElementById('passwordm').value;
+        var patten = /\s/g;
+        
+
+        if(user == ""){
+            document.getElementById("emaili").innerHTML="** Please Fill The Username";
+            return false;
+        }
+
+        if(user.replace(/\s/g,"").length<=0){
+            document.getElementById("emaili").innerHTML="** White Space Are Not Allowed";
+            return false;
+        }
+
+        if(user.indexOf('@') <=0){
+            document.getElementById("emaili").innerHTML="** emailid is not Ok";
+            return false;
+        }
+
+        if((user.charAt(user.length-4)!='.') && (user.charAt(user.length-3)!='.')){
+            document.getElementById("emaili").innerHTML="** emailid is not Ok";
+            return false;
+        }
+
+        if((user.length <=2) || (user.length >25)){
+            document.getElementById("emaili").innerHTML="** Length Shoud be beetween 3 and 25";
+            return false;
+        }
+
+        if(!isNaN(user)) {
+            document.getElementById("emaili").innerHTML="** numbers are not allowd";
+            return false;
+        }
+
+        if(pass == ""){
+            document.getElementById("passwordi").innerHTML="** Please Fill The Password";
+            return false;
+        }
+
+        if((pass.length <8) || (user.pass >15)){
+            document.getElementById("passwordi").innerHTML="** password should have Atleast 8 Character";
+            return false;
+        }
+
+        if(pass.match(patten)){
+            document.getElementById("passwordi").innerHTML="** White Space Are Not Allowed";
+            return false;
+        }
+
+        
+
+        
+
+
+    }
+
+    
+
+
+    function myFunction() {
+  var x = document.getElementById("passwordm");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+
+</html>
